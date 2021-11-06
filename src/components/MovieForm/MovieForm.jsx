@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
 
 function MovieForm() {
   const history = useHistory();
   const dispatch = useDispatch();
-
   const genres = useSelector((store) => store.genres);
 
   useEffect(() => {
@@ -13,7 +13,7 @@ function MovieForm() {
   }, []);
 
   const [newMovie, setNewMovie] = useState({
-    genre: "",
+    genre_id: "",
     title: "",
     poster: "",
     description: "",
@@ -29,7 +29,8 @@ function MovieForm() {
         onSubmit={(e) => {
           e.preventDefault();
           console.log(newMovie);
-          //   history.push('/')
+          axios.post("/api/movie", newMovie);
+          history.push("/");
           clearInputs();
         }}
       >
@@ -56,11 +57,12 @@ function MovieForm() {
         ></textarea>
 
         <select
+          defaultValue={"0"}
           onChange={(e) => {
-            setNewMovie({ ...newMovie, genre: e.target.value });
+            setNewMovie({ ...newMovie, genre_id: e.target.value });
           }}
         >
-          <option selected disabled value="0">
+          <option disabled value="0">
             Pick Genre
           </option>
           {genres.data?.map((genre) => {
