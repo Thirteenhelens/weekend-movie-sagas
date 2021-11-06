@@ -29,7 +29,7 @@ function* fetchAllMovies() {
 
 }
 
-function* fetchSelectedMovie() {
+function* fetchSelectedMovie(action) {
     // Get selected Movie from DB
     try {
         let selected = action.payload;
@@ -42,7 +42,6 @@ function* fetchSelectedMovie() {
     } catch (err) {
         console.log('Err getting selected genres ->', err);
     }
-    console.log(response);
 }
 
 // Create sagaMiddleware
@@ -59,7 +58,7 @@ const selectedMovie = (state = {}, action) => {
 }
 
 // Used to store the genres of the movie the user clicked on. 
-const selectedMovieGenres = (state = {}, action) => {
+const selectedMovieGenres = (state = [], action) => {
     switch (action.type) {
         case "SET_SELECTED_MOVIE_GENRE":
             return action.payload;
@@ -94,6 +93,7 @@ const storeInstance = createStore(
         movies,
         genres,
         selectedMovie,
+        selectedMovieGenres,
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),

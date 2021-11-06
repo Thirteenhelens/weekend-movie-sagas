@@ -8,9 +8,10 @@ function Details() {
   const history = useHistory();
   const dispatch = useDispatch();
   const selectedMovie = useSelector((store) => store.selectedMovie);
+  const selectedMovieGenres = useSelector((store) => store.selectedMovieGenres);
 
   useEffect(() => {
-    dispatch({ type: "FETCH_SELECTED_MOVIE_DB", payload: selectedMovie });
+    dispatch({ type: "FETCH_SELECTED_MOVIE_DB", payload: selectedMovie.id });
   }, []);
 
   return (
@@ -22,7 +23,13 @@ function Details() {
           <h2>{selectedMovie.title}</h2>
           <img src={selectedMovie.poster} alt={selectedMovie.title} />
           <p>{selectedMovie.description}</p>
-          <p>Genres:</p>
+          {/* Conditionally rendering the correct grammar for genres depending on how many there are. */}
+          <p>
+            Genre{selectedMovieGenres.data.length > 1 ? "s" : ""}:{" "}
+            {/* Mapping over each genre, then joining them together to be displayed on one line. */}
+            {selectedMovieGenres.data?.map((genre) => genre.name).join(", ")}
+          </p>
+          {/* When button is clicked, the user is sent back to movieList page. */}
           <button
             onClick={() => {
               history.push("/");
@@ -45,5 +52,3 @@ function Details() {
 }
 
 export default Details;
-
-// Hint : You can make a GET request for a specific movie. Remember `req.params` and `:id`?
