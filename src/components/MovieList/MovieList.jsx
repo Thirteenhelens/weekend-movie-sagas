@@ -1,8 +1,17 @@
 import "./MovieList.css";
+import Card from "@mui/material/Card";
+import Paper from "@mui/material/Paper";
 import React, { useEffect } from "react";
+import Button from "@mui/material/Button";
 import { useHistory } from "react-router-dom";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
 import { useDispatch, useSelector } from "react-redux";
 //Importing everything I'll need to reference later.
+
+import yellow from "@material-ui/core/colors/yellow";
 
 function MovieList() {
   //Making a hook to history and dispatch so I can use the shorthand later on.
@@ -24,31 +33,52 @@ function MovieList() {
     dispatch({ type: "FETCH_MOVIES" });
   }, []);
 
-  //Below is what is rendered to the DOM.
+  //Below is what is rendered to the DOM. Styling done with MUI.
   return (
     <main>
-      <h1>MovieList</h1>
-      {/* This button will send the user to the MovieForm page.  */}
-      <button
-        onClick={() => {
-          history.push("/movieForm");
-        }}
+      <Paper
+        elevation={6}
+        className="movieListHead"
+        sx={{ backgroundColor: "#a3a3c2" }}
       >
-        MovieForm
-      </button>
+        <br />
+        <h1>Movie Selector</h1>
+        <div className="newMovieBttnContainer">
+          <Button
+            variant="contained"
+            color="success"
+            className="newMovieBttn"
+            sx={{ mr: 10, mb: 2 }}
+            onClick={() => {
+              history.push("/movieForm");
+            }}
+          >
+            Add new movie
+          </Button>
+        </div>
+      </Paper>
       <section className="movies">
         {/* Mapping over every movie stored in index and displaying the name and poster. */}
         {movies.map((movie) => {
           return (
-            <div key={movie.id}>
-              <h3>{movie.title}</h3>
-              <img
+            <Card sx={{ m: 1, width: 345 }}>
+              <CardMedia
+                component="img"
+                height="500"
+                image={movie.poster}
                 alt={movie.title}
-                src={movie.poster}
-                // When you click on a poster, the specific movie it's tied to is bundled up and sent to the details page.
-                onClick={() => selectMovie(movie)}
               />
-            </div>
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  {movie.title}
+                </Typography>
+              </CardContent>
+              <CardActions>
+                <Button size="small" onClick={() => selectMovie(movie)}>
+                  Learn More
+                </Button>
+              </CardActions>
+            </Card>
           );
         })}
       </section>
