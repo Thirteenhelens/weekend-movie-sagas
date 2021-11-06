@@ -16,7 +16,7 @@ function Details() {
 
   return (
     <div>
-      {/* Conditional render tied to a movie title, so if the user hasn't selected a movie, selectedMovie.title returns false.  */}
+      {/* Conditional render tied to a movie title, so if the user hasn't selected a movie, selectedMovie.title returns false. */}
       {selectedMovie.title ? (
         //If a movie has been selected, the title, poster, description, and genres are shown.
         <div>
