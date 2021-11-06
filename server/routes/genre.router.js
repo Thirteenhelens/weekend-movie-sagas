@@ -29,5 +29,24 @@ router.get('/:selected', (req, res) => {
 
 });
 
+router.get('/', (req, res) => {
+  // Getting every genre
+  const query = `SELECT "name", "id" FROM "genres";`
+
+  pool.query(query)
+    .then(result => {
+      //After getting the genres, they are bundled up and sent back to where they were requested from. 
+      res.send(result.rows);
+      // Logging for redundancy.
+      console.log(result.rows);
+    })
+    .catch(err => {
+      //In case of error, or failed request, the error is logged and a failure status code is sent. 
+      console.log('ERROR ', err);
+      res.sendStatus(500)
+    })
+});
+
+
 //Exporting for use on other files.
 module.exports = router;
