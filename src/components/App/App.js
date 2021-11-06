@@ -2,25 +2,31 @@ import './App.css';
 import Details from '../Details/Details';
 import MovieList from '../MovieList/MovieList';
 import MovieForm from '../MovieForm/MovieForm';
-import {HashRouter as Router, Route} from 'react-router-dom';
+import { HashRouter as Router, Route } from 'react-router-dom';
+// Importing components and styling.
 
 function App() {
   return (
     <div className="App">
       <h1>The Movies Saga!</h1>
-      <Router>        
+
+      <Router>
+        {/* Home page */}
         <Route path="/" exact>
           <MovieList />
         </Route>
-        
+
         {/* Details page */}
-        <Details />
+        <Route path="/details" >
+          <Details />
+        </Route>
 
-        {/* Add Movie page */}
-        <MovieForm />
-
-
+        {/* Movie page */}
+        <Route path="/movieForm" >
+          <MovieForm />
+        </Route>
       </Router>
+
     </div>
   );
 }
