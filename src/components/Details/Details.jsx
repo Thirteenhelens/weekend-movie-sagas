@@ -25,7 +25,7 @@ function Details() {
           <p>{selectedMovie.description}</p>
           {/* Conditionally rendering the correct grammar for genres depending on how many there are. */}
           <p>
-            Genre{selectedMovieGenres.data.length > 1 ? "s" : ""}:{" "}
+            Genre{selectedMovieGenres.data?.length > 1 ? "s: " : ": "}
             {/* Mapping over each genre, then joining them together to be displayed on one line. */}
             {selectedMovieGenres.data?.map((genre) => genre.name).join(", ")}
           </p>
