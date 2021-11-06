@@ -1,9 +1,17 @@
 import "./Details.css";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
 function Details() {
+  const history = useHistory();
+  const dispatch = useDispatch();
   const selectedMovie = useSelector((store) => store.selectedMovie);
+
+  useEffect(() => {
+    dispatch({ type: "FETCH_SELECTED_MOVIE_DB", payload: selectedMovie });
+  }, []);
 
   return (
     <div>
@@ -15,6 +23,13 @@ function Details() {
           <img src={selectedMovie.poster} alt={selectedMovie.title} />
           <p>{selectedMovie.description}</p>
           <p>Genres:</p>
+          <button
+            onClick={() => {
+              history.push("/");
+            }}
+          >
+            Back to list
+          </button>
         </div>
       ) : (
         <div>
@@ -31,5 +46,4 @@ function Details() {
 
 export default Details;
 
-// TODO: The details page should have a `Back to List` button, which should bring the user to the Home/List Page
 // Hint : You can make a GET request for a specific movie. Remember `req.params` and `:id`?
