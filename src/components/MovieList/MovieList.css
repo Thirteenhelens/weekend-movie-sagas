@@ -1,4 +1,14 @@
+.movieListHead {
+    margin: 0px;
+}
+
 .movies {
     display : flex;
     flex-wrap: wrap;
+    justify-content: center;
+}
+
+.newMovieBttnContainer {
+    display: flex;
+    justify-content: flex-end;
 }
