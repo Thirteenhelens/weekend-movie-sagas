@@ -3,14 +3,18 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+//Importing everything I'll need to reference later.
 
 function Details() {
+  //Making a hook to history and dispatch so I can use the shorthand later on.
   const history = useHistory();
   const dispatch = useDispatch();
+  //Getting the selected movie and it's genres to display and dispatch later on.
   const selectedMovie = useSelector((store) => store.selectedMovie);
   const selectedMovieGenres = useSelector((store) => store.selectedMovieGenres);
 
   useEffect(() => {
+    //Getting the genres from the database on page render.
     dispatch({ type: "FETCH_SELECTED_MOVIE_DB", payload: selectedMovie.id });
   }, []);
 

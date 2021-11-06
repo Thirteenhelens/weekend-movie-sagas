@@ -8,7 +8,7 @@ function MovieList() {
   //Making a hook to history and dispatch so I can use the shorthand later on.
   const history = useHistory();
   const dispatch = useDispatch();
-  //Getting the lost of movies from the index file to display on DOM.
+  //Getting the list of movies from the index file to display on DOM.
   const movies = useSelector((store) => store.movies);
 
   //When a movie is clicked, the title is logged, then the chosen movie is stored

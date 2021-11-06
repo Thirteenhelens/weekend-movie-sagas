@@ -1,32 +1,41 @@
+import axios from "axios";
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import axios from "axios";
+//Importing everything I'll need to reference later.
 
 function MovieForm() {
+  //Making a hook to history and dispatch so I can use the shorthand later on.
   const history = useHistory();
   const dispatch = useDispatch();
+  //Getting the genres from store to set each option.
   const genres = useSelector((store) => store.genres);
 
   useEffect(() => {
+    //Getting each genre from the database every page render.
     dispatch({ type: "FETCH_GENRES" });
   }, []);
 
+  //Setting a default state for the movie, for ease of filling in later.
   const [newMovie, setNewMovie] = useState({
-    genre_id: "",
     title: "",
     poster: "",
+    genre_id: "",
     description: "",
   });
 
+  //Does what the name suggests, clears the value of the inputs.
   const clearInputs = () => {
     setNewMovie({ genre: "", title: "", poster: "", description: "" });
   };
 
   return (
     <div>
+      {/* Start of the form that, when the save button is clicked, posts the new movie to the database,
+       then sends the user to list page, and finally clears the inputs. */}
       <form
         onSubmit={(e) => {
+          //Stops the page from refreshing.
           e.preventDefault();
           console.log(newMovie);
           axios.post("/api/movie", newMovie);
@@ -34,6 +43,8 @@ function MovieForm() {
           clearInputs();
         }}
       >
+        {/* Each input has a value that is tied to a key in newMovie,
+         and when text is entered, sets that key to the input. */}
         <input
           placeholder="Title"
           value={newMovie.title}
@@ -73,13 +84,14 @@ function MovieForm() {
             );
           })}
         </select>
-
-        <br />
-        <button type="submit">Save</button>
+        {/* This is the infamous add // submit button */}
+        <button type="submit">Add movie</button>
       </form>
 
+      {/* Cancel button. When clicked, inputs are cleared and user is sent to the list page.  */}
       <button
         onClick={() => {
+          clearInputs();
           history.push("/");
         }}
       >
@@ -89,4 +101,5 @@ function MovieForm() {
   );
 }
 
+//Exporting for other files to use.
 export default MovieForm;
