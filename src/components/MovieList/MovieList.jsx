@@ -11,7 +11,6 @@ import CardContent from "@mui/material/CardContent";
 import { useDispatch, useSelector } from "react-redux";
 //Importing everything I'll need to reference later.
 
-import yellow from "@material-ui/core/colors/yellow";
 
 function MovieList() {
   //Making a hook to history and dispatch so I can use the shorthand later on.
@@ -42,7 +41,7 @@ function MovieList() {
         sx={{ backgroundColor: "#a3a3c2" }}
       >
         <br />
-        <h1>Movie Selector</h1>
+        <h1>Movie Picker</h1>
         <div className="newMovieBttnContainer">
           <Button
             variant="contained"
@@ -61,7 +60,7 @@ function MovieList() {
         {/* Mapping over every movie stored in index and displaying the name and poster. */}
         {movies.map((movie) => {
           return (
-            <Card sx={{ m: 1, width: 345 }}>
+            <Card sx={{ m: 1, width: 345 }} key={movie.id}>
               <CardMedia
                 component="img"
                 height="500"
@@ -74,7 +73,7 @@ function MovieList() {
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button size="small" onClick={() => selectMovie(movie)}>
+                <Button size="medium" onClick={() => selectMovie(movie)}>
                   Learn More
                 </Button>
               </CardActions>

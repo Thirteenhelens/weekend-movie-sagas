@@ -4,6 +4,16 @@ import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 //Importing everything I'll need to reference later.
 
+
+
+
+// STYLE ME
+
+
+
+
+
+
 function MovieForm() {
   //Making a hook to history and dispatch so I can use the shorthand later on.
   const history = useHistory();

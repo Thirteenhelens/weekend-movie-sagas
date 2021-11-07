@@ -1,9 +1,16 @@
 import "./Details.css";
 import { useEffect } from "react";
+import Paper from "@mui/material/Paper";
 import { Link } from "react-router-dom";
+import Button from "@mui/material/Button";
 import { useHistory } from "react-router-dom";
+import Typography from "@mui/material/Typography";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
 import { useSelector, useDispatch } from "react-redux";
 //Importing everything I'll need to reference later.
+
+import Container from "@mui/material/Container";
 
 function Details() {
   //Making a hook to history and dispatch so I can use the shorthand later on.
@@ -18,29 +25,60 @@ function Details() {
     dispatch({ type: "FETCH_SELECTED_MOVIE_DB", payload: selectedMovie.id });
   }, []);
 
+  //Below is what is rendered to the DOM. Styling done with MUI.
   return (
     <div>
+      <Paper elevation={6} sx={{ backgroundColor: "#a3a3c2", mb: 2 }}>
+        <br />
+        <h1>Additional Details</h1>
+        <br />
+      </Paper>
+
       {/* Conditional render tied to a movie title, so if the user hasn't selected a movie, selectedMovie.title returns false. */}
       {selectedMovie.title ? (
         //If a movie has been selected, the title, poster, description, and genres are shown.
         <div>
-          <h2>{selectedMovie.title}</h2>
-          <img src={selectedMovie.poster} alt={selectedMovie.title} />
-          <p>{selectedMovie.description}</p>
-          {/* Conditionally rendering the correct grammar for genres depending on how many there are. */}
-          <p>
-            Genre{selectedMovieGenres.data?.length > 1 ? "s: " : ": "}
-            {/* Mapping over each genre, then joining them together to be displayed on one line. */}
-            {selectedMovieGenres.data?.map((genre) => genre.name).join(", ")}
-          </p>
-          {/* When button is clicked, the user is sent back to movieList page. */}
-          <button
-            onClick={() => {
-              history.push("/");
-            }}
-          >
-            Back to list
-          </button>
+
+          <Container maxWidth="sm">
+
+            <img src={selectedMovie.poster} alt={selectedMovie.title} />
+            <CardContent>
+              <Typography
+                sx={{ fontSize: 14 }}
+                color="text.secondary"
+                gutterBottom
+              >
+                Selected Movie:
+              </Typography>
+              <Typography variant="h5" component="div">
+                {selectedMovie.title}
+              </Typography>
+              <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                {/* Conditionally rendering the correct grammar for genres depending on how many there are. */}
+                Genre{selectedMovieGenres.data?.length > 1 ? "s: " : ": "}
+                {/* Mapping over each genre, then joining them together to be displayed on one line. */}
+                {selectedMovieGenres.data
+                  ?.map((genre) => genre.name)
+                  .join(", ")}
+              </Typography>
+              <Typography variant="body2">
+                {selectedMovie.description}
+              </Typography>
+            </CardContent>
+            <CardActions>
+              {/* When button is clicked, the user is sent back to movieList page. */}
+              <Button
+                size="small"
+                onClick={() => {
+                  history.push("/");
+                }}
+              >
+                Back to list
+              </Button>
+            </CardActions>
+
+          </Container>
+          
         </div>
       ) : (
         <div>
