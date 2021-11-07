@@ -4,32 +4,18 @@
 
 _Duration: Weekend Sprint_
 
-Directly above this is how long it took you to develop the project. Your project description goes here. What problem did you solve? How did you solve it? 
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquam at massa in faucibus. Etiam volutpat, risus non mollis convallis, velit nisi pulvinar mi, eu faucibus orci nisi eget nibh. Integer a velit pretium, volutpat arcu eleifend, fringilla elit. Cras erat sapien, convallis venenatis tellus vitae, feugiat dictum felis.
-
-Suspendisse euismod volutpat aliquet. Maecenas vulputate mauris in pellentesque facilisis. Phasellus varius malesuada semper. Cras sollicitudin diam mollis maximus aliquam.
-
-To see the fully functional site, please visit: [DEPLOYED VERSION OF APP](www.heroku.com)
-
-## Screen Shot
-
-Include one or two screen shots of your project here (optional). Remove if unused.
+This app is used to keep track of movies! Either movies you have watched, or ones you want to. 
+Selecting a movie on the initial page will bring you to a new page that contains more information on the chosen movie, including genres, and a description. You may also add new movies on a separate page.
 
 ### Prerequisites
 
-Link to software that is required to install the app (e.g. node).
-
 - [Node.js](https://nodejs.org/en/)
-- List other prerequisites here
+- Code editor of choice. (Built using VS Code)
+- A browser installed.
 
 ## Installation
 
-How do you get your application up and running? This is a step by step list for how another developer could get this project up and running. The good target audience in terms of knowledge, would be a fellow Primer from another cohort being able to spin up this project. Note that you do not need a paragraph here to intro Installation. It should be step-by-step.
-
-If your application has secret keys (for example --  Twilio), make sure you tell them how to set that up, both in getting the key and then what to call it in the `.env` file.
-
-1. Create a database named `your database name`,
+1. Create a database named `saga_movies_weekend`,
 2. The queries in the `tables.sql` file are set up to create all the necessary tables and populate the needed data to allow the application to run correctly. The project is built on [Postgres](https://www.postgresql.org/download/), so you will need to make sure to have that installed. We recommend using Postico to run those queries as that was used to create the queries, 
 3. Open up your editor of choice and run an `npm install`
 4. Run `npm run server` in your terminal
@@ -37,27 +23,29 @@ If your application has secret keys (for example --  Twilio), make sure you tell
 6. The `npm run client` command will open up a new browser tab for you!
 
 ## Usage
-How does someone use this application? Tell a user story here.
 
-1. xxx
-2. xxx
-3. xxx
-4. xxx
-5. xxx
-6. xxx
+1. Look through each of the movies.
+2. If a movie intrigues you, click learn more to find out more!
+3. When you are done looking at the details of your chosen movie, click `Back to List`.
+4. If you would like to add a new movie, click `Add new movie`.
+5. Fill out the form to add a movie. When done, click `Add Movie`.
+6. Otherwise, click `Cancel` to be brought back to the home page with the list of movies.
 
 
 ## Built With
 
-List technologies and frameworks here
+1. CSS
+2. HTML
+3. Node
+4. Postico
+5. VS Code
+6. PostgreSQL
+7. Javascript
+8. Material UI
 
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
-
-_Note, include this only if you have a license file. GitHub will generate one for you if you want!_
 
 ## Acknowledgement
-Thanks to [Prime Digital Academy](www.primeacademy.io) who equipped and helped me to make this application a reality. (Thank your people)
+Thanks to [Prime Digital Academy](www.primeacademy.io) who equipped and helped me to make this application a reality, my pod group, the saturday study group, my partner, Emile, and last but not least, my Mom and Dad.
 
 ## Support
-If you have suggestions or issues, please email me at [youremail@whatever.com](www.google.com)
+If you have suggestions or issues, please email me at [jbarrett1347@gmail.com]
