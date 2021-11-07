@@ -4,13 +4,13 @@ import Paper from "@mui/material/Paper";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import { useHistory } from "react-router-dom";
+import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import { useSelector, useDispatch } from "react-redux";
 //Importing everything I'll need to reference later.
 
-import Container from "@mui/material/Container";
 
 function Details() {
   //Making a hook to history and dispatch so I can use the shorthand later on.
@@ -27,7 +27,7 @@ function Details() {
 
   //Below is what is rendered to the DOM. Styling done with MUI.
   return (
-    <div>
+    <>
       <Paper elevation={6} sx={{ backgroundColor: "#a3a3c2", mb: 2 }}>
         <br />
         <h1>Additional Details</h1>
@@ -38,9 +38,7 @@ function Details() {
       {selectedMovie.title ? (
         //If a movie has been selected, the title, poster, description, and genres are shown.
         <div>
-
           <Container maxWidth="sm">
-
             <img src={selectedMovie.poster} alt={selectedMovie.title} />
             <CardContent>
               <Typography
@@ -76,9 +74,7 @@ function Details() {
                 Back to list
               </Button>
             </CardActions>
-
           </Container>
-          
         </div>
       ) : (
         <div>
@@ -89,7 +85,7 @@ function Details() {
           </h3>
         </div>
       )}
-    </div>
+    </>
   );
 }
 

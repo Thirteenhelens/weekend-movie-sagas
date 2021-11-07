@@ -34,7 +34,7 @@ function MovieList() {
 
   //Below is what is rendered to the DOM. Styling done with MUI.
   return (
-    <main>
+    <>
       <Paper
         elevation={6}
         className="movieListHead"
@@ -81,7 +81,7 @@ function MovieList() {
           );
         })}
       </section>
-    </main>
+    </>
   );
 }
 
