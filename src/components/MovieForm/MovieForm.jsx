@@ -78,7 +78,7 @@ function MovieForm() {
             <FormControl variant="filled" sx={{ m: 1, minWidth: 150 }}>
               <InputLabel>Pick Genre</InputLabel>
               <Select
-                value={newMovie.genre_id}
+                value=''
                 label="Pick Genre"
                 onChange={(e) => {
                   setNewMovie({ ...newMovie, genre_id: e.target.value });
